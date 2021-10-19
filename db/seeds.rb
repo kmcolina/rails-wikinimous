@@ -5,3 +5,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+10.times do |i|
+  new_article = Article.new(title: Faker::Game.title , content: Faker::Books::Lovecraft.paragraph)
+  new_article.valid?  # => should be `true`
+  new_article.save!    # => should not display rollback warnings
+  Article.last        # => should be the one you just saved
+end
